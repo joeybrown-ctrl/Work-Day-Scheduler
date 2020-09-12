@@ -1,11 +1,8 @@
 //$(document).ready(function(){
 
 let container = $('.container');
-
 let timeArr = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm'];
-
-let jumbo = $('.jumbotron')
-
+let jumbo = $('.jumbotron');
 let timeElement = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 jumbo.append(timeElement);
 
@@ -16,21 +13,22 @@ for (let i = 0; i < timeArr.length; i++) {
     //make repeatable
     let time = timeArr[i];
 
-    let sectionEl = $('<section>').addClass('row');
-    let hourEl = $('<div>').addClass('col-md-3');
+    let sectionEl = $('<section>').addClass('row d-flex justify-content-center rounded');
+    let hourEl = $('<div>').addClass('col-lg-3 col text-center');
     hourEl.text(time);
+    //hourEl.css('padding-top', '10px;')
     sectionEl.append(hourEl);
 
-    let inputEl = $('<div>').addClass('col-md-6');
+    let inputEl = $('<div>').addClass('col-lg-6 col text-center');
     let input = $('<textarea>');
-    input.addClass('input');
+    input.addClass('input rounded-pill');
     input.attr('id', time);
     inputEl.append(input);
     sectionEl.append(inputEl);
     let savedText = localStorage.getItem(time);
     input.val(savedText);
 
-    let saveEl = $('<div>').addClass('col-md-3');
+    let saveEl = $('<div>').addClass('col-lg-3 col text-center');
     let saveBtn = $('<button>').addClass('save-btn');
     saveBtn.attr('date-time', time);
     saveBtn.text('save');
@@ -57,6 +55,8 @@ for (let i = 0; i < timeArr.length; i++) {
     //set up past + future hour if statements 
     //display current time in element on page
     //moment format to set time element
+
+    //add styling (padding to hourEl, input, and saveBtn)
 
 }
 
