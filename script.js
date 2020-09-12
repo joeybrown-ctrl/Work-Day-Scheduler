@@ -1,11 +1,20 @@
 //$(document).ready(function(){
 
-    let container = $('.container');
-    let time = '';
+let container = $('.container');
+
+let timeArr = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm'];
+
+let jumbo = $('.jumbotron')
+
+let timeElement = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+jumbo.append(timeElement);
+
+
+for (let i = 0; i < timeArr.length; i++) {
 
 
     //make repeatable
-    time = '9:00am';
+    let time = timeArr[i];
 
     let sectionEl = $('<section>').addClass('row');
     let hourEl = $('<div>').addClass('col-md-3');
@@ -13,11 +22,13 @@
     sectionEl.append(hourEl);
 
     let inputEl = $('<div>').addClass('col-md-6');
-    let input = $('<input type= "text">');
+    let input = $('<textarea>');
     input.addClass('input');
     input.attr('id', time);
     inputEl.append(input);
     sectionEl.append(inputEl);
+    let savedText = localStorage.getItem(time);
+    input.val(savedText);
 
     let saveEl = $('<div>').addClass('col-md-3');
     let saveBtn = $('<button>').addClass('save-btn');
@@ -26,7 +37,29 @@
     saveEl.append(saveBtn);
     sectionEl.append(saveEl);
     container.append(sectionEl);
-   
+
+    saveBtn.on("click", function(){
+        localStorage.setItem(time, input.val())
+    });
+
+    let now = moment();
+    moment().hour();
+    let currentHour = moment().hour();
+    let number = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+    if (currentHour === number[i]){
+        sectionEl.css('background-color', '#ff6961');
+    } else if (currentHour < number[i]) {
+        sectionEl.css('background-color', '#77dd77');
+    } else if (currentHour > number[i]) {
+        sectionEl.css('background-color', '#d3d3d3');
+    }
+
+    //set up past + future hour if statements 
+    //display current time in element on page
+    //moment format to set time element
+
+}
+
 
 
 
