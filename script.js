@@ -13,23 +13,23 @@ for (let i = 0; i < timeArr.length; i++) {
     //make repeatable
     let time = timeArr[i];
 
-    let sectionEl = $('<section>').addClass('row d-flex justify-content-center rounded');
-    let hourEl = $('<div>').addClass('col-lg-3 col text-center');
+    let sectionEl = $('<section>').addClass('row rounded align-items-center');
+    let hourEl = $('<div>').addClass('time-block col text-center');
     hourEl.text(time);
-    //hourEl.css('padding-top', '10px;')
     sectionEl.append(hourEl);
 
     let inputEl = $('<div>').addClass('col-lg-6 col text-center');
     let input = $('<textarea>');
-    input.addClass('input rounded-pill');
+    //input.addClass('input rounded-pill');
+    $(this).attr('cols', '50')
     input.attr('id', time);
     inputEl.append(input);
     sectionEl.append(inputEl);
     let savedText = localStorage.getItem(time);
     input.val(savedText);
 
-    let saveEl = $('<div>').addClass('col-lg-3 col text-center');
-    let saveBtn = $('<button>').addClass('save-btn');
+    let saveEl = $('<div>').addClass('col-lg-3 col text-center align-items-center');
+    let saveBtn = $('<button>').addClass('saveBtn');
     saveBtn.attr('date-time', time);
     saveBtn.text('save');
     saveEl.append(saveBtn);
@@ -51,10 +51,6 @@ for (let i = 0; i < timeArr.length; i++) {
     } else if (currentHour > number[i]) {
         sectionEl.css('background-color', '#d3d3d3');
     }
-
-    //set up past + future hour if statements 
-    //display current time in element on page
-    //moment format to set time element
 
     //add styling (padding to hourEl, input, and saveBtn)
 
